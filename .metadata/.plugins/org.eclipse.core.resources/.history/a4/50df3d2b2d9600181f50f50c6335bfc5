@@ -1,0 +1,77 @@
+import java.io.Serializable;
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+public class Football extends UnicastRemoteObject
+             implements Football_Interface, Serializable {
+	private static final long serialVersionUID = 1L;
+	public Football () throws RemoteException {}
+	public void start_match() throws RemoteException{
+		//inicjalizacja scannera i list gdzie beda gromadzone zdarzenia pilkarskie.
+		//team_1 - gospodarze.
+		ArrayList<Player> team_1_players_list = new ArrayList<Player>();//lista graczy gospodarzy
+		//ArrayList<Goal>   team_1_goal_list = new ArrayList<Goal>();
+		//team_2 - goscie.
+		ArrayList<Player> team_2_players_list = new ArrayList<Player>();
+		System.out.println("Witaj w systemie rejestracji meczu pilkarskiego!");
+		System.out.println("Ile zawodnikow bedzie w druzynie");
+		int number_of_players = get_int();	
+		System.out.println("Podaj nazwe druzyny gospodarzy:");
+		String team_1_name = get_string();
+		System.out.println("Podaj nazwe druzyny gosci");
+		String team_2_name = s.nextLine();
+		s.close();
+		System.out.println("Prosze wprowadzic kolejno imie nazwisko oraz czy zadwodnik zdobyl 1 zolta w pop meczu");
+		team_1_players_list = add_player(team_1_players_list, number_of_players);
+		System.out.println("Prosze wprowadzic kolejno imie nazwisko oraz czy zadwodnik zdobyl 1 zolta w pop meczu");
+		team_2_players_list = add_player(team_2_players_list, number_of_players);
+		print_players(team_1_players_list);
+		print_players(team_2_players_list);
+
+		
+
+	}
+	// metoda dodaj¹ca graczy poszczegolnej druzyny 
+	public ArrayList<Player> add_player(ArrayList<Player> lista,int number_of_players) {
+		for (int i = 0; i < number_of_players; i++) {
+			String temp_name = get_string();
+			System.out.println("Nazwisko");
+			String temp_surname = get_string();
+			System.out.println("Ilosc posiadanych zoltych kartek");
+			int temp_yellow_cards = get_int();
+			Player temp_player = new Player(temp_name, temp_surname, 0, 0, temp_yellow_cards, false);
+			lista.add(temp_player);
+		}
+		return lista;
+	}
+	public void print_players(ArrayList<Player> list) {
+		for (Player player : list) {
+			System.out.println(player.toString());
+		}
+	}
+	// pobieranie nazwy druzyny
+	public String give_team_name() {
+		Scanner s = new Scanner(System.in);
+		String temp_team_name = s.nextLine();
+		s.close();
+		return temp_team_name;	
+	}
+	// wczytanie stringa
+	public String get_string() {
+		Scanner s = new Scanner(System.in);
+		String temp_string = s.nextLine();
+		s.close();
+		return temp_string;
+	}
+	// wczytanie inta
+	public int get_int() {
+		Scanner s = new Scanner(System.in);
+		String temp_string = s.nextLine();
+		s.close();
+		int temp_int = Integer.parseInt(temp_string);
+		return temp_int;
+	}
+}

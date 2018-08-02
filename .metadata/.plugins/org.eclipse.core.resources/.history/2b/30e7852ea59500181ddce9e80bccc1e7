@@ -1,0 +1,52 @@
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+
+     
+public class Football extends UnicastRemoteObject
+             implements Football_Interface {
+	private static final long serialVersionUID = 1L;
+	public Football () throws RemoteException {}
+	public void start_match() throws RemoteException{
+		//inicjalizacja scannera i list gdzie beda gromadzone zdarzenia pilkarskie.
+		//team_1 - gospodarze.
+		ArrayList<Player> team_1_players_list = new ArrayList<Player>();//lista graczy gospodarzy
+		//ArrayList<Goal>   team_1_goal_list = new ArrayList<Goal>();
+		
+		
+		Scanner s = new Scanner(System.in);
+		System.out.println("Witaj w systemie rejestracji meczu pilkarskiego!");
+		System.out.println("Ile zawodnikow bedzie w druzynie");
+		int number_of_players = s.nextInt();
+		System.out.println("Podaj nazwe druzyny gospodarzy:");
+		String team_1_name = s.nextLine();
+		System.out.println("Prosze wprowadzic kolejno imie nazwisko oraz czy zadwodnik zdobyl 1 zolta w pop meczu");
+		team_1_players_list = add_player(team_1_players_list, number_of_players);
+		
+		
+		for (Player player : team_1_players_list) {
+			System.out.println(player.toString());
+			
+		}
+		
+
+	}
+	public ArrayList<Player> add_player(ArrayList<Player> lista,int number_of_players) {
+		Scanner s = new Scanner(System.in);
+		for (int i = 0; i < number_of_players; i++) {
+			String temp_name = s.nextLine();
+			System.out.println("Nazwisko");
+			String temp_surname = s.nextLine();
+			System.out.println("Ilosc posiadanych zoltych kartek");
+			int temp_yellow_cards = s.nextInt();
+			Player temp_player = new Player(temp_name, temp_surname, 0, 0, temp_yellow_cards, false);
+			lista.add(temp_player);
+	
+		}
+		s.close();
+		return lista;
+	}
+}

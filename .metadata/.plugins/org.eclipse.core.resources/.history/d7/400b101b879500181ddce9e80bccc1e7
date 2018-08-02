@@ -1,0 +1,6 @@
+
+public class goal {
+	public int minutes;
+	public int seconds;
+	
+}

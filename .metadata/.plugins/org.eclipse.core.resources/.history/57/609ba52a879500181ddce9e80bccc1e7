@@ -1,0 +1,22 @@
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+     
+public class Football extends UnicastRemoteObject
+             implements Football_Interface {
+	private static final long serialVersionUID = 1L;
+	public Football () throws RemoteException {}
+	public void start_match() throws RemoteException{
+		//inicjalizacja scannera i list gdzie beda gromadzone zdarzenia pilkarskie.
+		//team_1 - gospodarze.
+		ArrayList<Player> team_1_players_list = new ArrayList<Player>();//lista graczy gospodarzy
+		
+		
+		Scanner s = new Scanner(System.in);
+		System.out.println("Witaj w systemie rejestracji meczu pilkarskiego!");
+
+	}
+	
+}

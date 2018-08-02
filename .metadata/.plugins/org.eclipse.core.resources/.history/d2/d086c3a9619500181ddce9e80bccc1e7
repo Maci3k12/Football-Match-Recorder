@@ -1,0 +1,16 @@
+import java.rmi.*;
+import java.rmi.server.*;
+import java.util.Scanner;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
+     
+public class Football extends UnicastRemoteObject
+             implements Football_Interface {
+	private static final long serialVersionUID = 1L;
+	public Football () throws RemoteException {}
+	public void start_match() throws RemoteException{
+		Scanner s = new Scanner(System.in);
+		  int key = s.nextInt();
+	}
+	
+}
