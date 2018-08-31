@@ -7,7 +7,7 @@
     			   Naming.rebind("rmi://localhost/ABC", Hello);
     			   System.out.println("Serwer jest gotowy");
     			   }catch (Exception e) {
-    				   System.out.println("Addition Server failed: " + e);
+    				   System.out.println("Blad serwera:  " + e);
     				}
     		   }
     }
